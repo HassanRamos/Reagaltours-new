@@ -82,6 +82,85 @@ $(function() {
             return false;
         }
     })
+
+
+
+
+      // when the form is submitted
+    $('#insurance-form').on('submit', function(e) {
+
+        // if the validator does not prevent form submit
+        if (!e.isDefaultPrevented()) {
+            var url = "insurance_aply.php";
+
+            // POST values in the background the the script URL
+            $.ajax({
+                type: "POST",
+                url: "insurance_aply.php",
+                data: $(this).serialize(),
+                success: function(data) {
+                    // data = JSON object that insurance_aply.php returns
+
+
+                    // we recieve the type of the message: success x danger and apply it to the 
+                    var messageAlert = 'alert-' + data.type;
+                    var messageText = 'Infomation successfully submitted. Thank you,  will get back to you soon!';
+
+                    // let's compose Bootstrap alert box HTML
+                    var alertBox = '<div class="alert ' + messageAlert + '  alert-dismissible fade show">  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' + messageText + '</div>';
+
+                    // If we have messageAlert and messageText
+                    if (messageAlert && messageText) {
+                        // inject the alert to .messages div in our form
+                        $('#insurance-form').find('.messages').html(alertBox);
+                        // empty the form
+                        $('#insurance-form')[0].reset();
+                    }
+                }
+            });
+            return false;
+        }
+    })
+
+
+      // when the form is submitted
+    $('#trasfer-form').on('submit', function(e) {
+
+        // if the validator does not prevent form submit
+        if (!e.isDefaultPrevented()) {
+            var url = "trasfer_aply.php";
+
+            // POST values in the background the the script URL
+            $.ajax({
+                type: "POST",
+                url: "trasfer_aply.php",
+                data: $(this).serialize(),
+                success: function(data) {
+                    // data = JSON object that trasfer_aply.php returns
+
+
+                    // we recieve the type of the message: success x danger and apply it to the 
+                    var messageAlert = 'alert-' + data.type;
+                    var messageText = 'Infomation successfully submitted. Thank you,  will get back to you soon!';
+
+                    // let's compose Bootstrap alert box HTML
+                    var alertBox = '<div class="alert ' + messageAlert + '  alert-dismissible fade show">  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' + messageText + '</div>';
+
+                    // If we have messageAlert and messageText
+                    if (messageAlert && messageText) {
+                        // inject the alert to .messages div in our form
+                        $('#trasfer-form').find('.messages').html(alertBox);
+                        // empty the form
+                        $('#trasfer-form')[0].reset();
+                    }
+                }
+            });
+            return false;
+        }
+    })
 });
+
+
+
 
  
